@@ -21,6 +21,7 @@ app.use(
 
 // Define Routes
 app.use('/api/auth', require('./routes/authRoutes'));
+app.use('/api/invoices', require('./routes/invoiceRoutes'));
 
 const PORT = process.env.PORT || 5000;
 
