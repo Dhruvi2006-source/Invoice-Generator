@@ -133,9 +133,11 @@ const InvoiceForm = () => {
       <div className="max-w-4xl mx-auto bg-white rounded-xl shadow-md overflow-hidden">
         <div className="px-6 py-8">
           <div className="flex justify-between items-center mb-8">
-            <h2 className="text-3xl font-extrabold text-gray-900">{id ? 'Edit Invoice' : 'Create New Invoice'}</h2>
-            <button 
-              onClick={() => navigate('/')}
+            <h2 className="text-3xl font-extrabold text-gray-900">
+              {id ? "Edit Invoice" : "Create New Invoice"}
+            </h2>
+            <button
+              onClick={() => navigate("/")}
               className="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none"
             >
               Cancel
@@ -152,7 +154,9 @@ const InvoiceForm = () => {
             {/* Sender & Client Details */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-medium text-gray-700">Your Company Name *</label>
+                <label className="block text-sm font-medium text-gray-700">
+                  Your Company Name *
+                </label>
                 <input
                   type="text"
                   name="companyName"
@@ -164,7 +168,9 @@ const InvoiceForm = () => {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700">Client Name *</label>
+                <label className="block text-sm font-medium text-gray-700">
+                  Client Name *
+                </label>
                 <input
                   type="text"
                   name="clientName"
@@ -176,7 +182,9 @@ const InvoiceForm = () => {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700">Client Email</label>
+                <label className="block text-sm font-medium text-gray-700">
+                  Client Email
+                </label>
                 <input
                   type="email"
                   name="clientEmail"
@@ -191,7 +199,9 @@ const InvoiceForm = () => {
             {/* Invoice Meta */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6 border-t border-gray-200">
               <div>
-                <label className="block text-sm font-medium text-gray-700">Invoice Number *</label>
+                <label className="block text-sm font-medium text-gray-700">
+                  Invoice Number *
+                </label>
                 <input
                   type="text"
                   name="invoiceNumber"
@@ -203,7 +213,9 @@ const InvoiceForm = () => {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700">Date</label>
+                <label className="block text-sm font-medium text-gray-700">
+                  Date
+                </label>
                 <input
                   type="date"
                   name="date"
@@ -229,8 +241,12 @@ const InvoiceForm = () => {
 
               <div className="space-y-4">
                 {items.map((item, index) => (
-                  <div key={index} className="flex flex-col sm:flex-row gap-4 items-start sm:items-center bg-gray-50 p-4 rounded-md border border-gray-200">
+                  <div
+                    key={index}
+                    className="flex flex-col sm:flex-row gap-4 items-start sm:items-center bg-gray-50 p-4 rounded-md border border-gray-200"
+                  >
                     <div className="flex-1 w-full">
+                      Product name
                       <input
                         type="text"
                         name="name"
@@ -242,6 +258,7 @@ const InvoiceForm = () => {
                       />
                     </div>
                     <div className="w-full sm:w-24">
+                      Quantity
                       <input
                         type="number"
                         name="quantity"
@@ -250,10 +267,13 @@ const InvoiceForm = () => {
                         onChange={(e) => handleItemChange(index, e)}
                         placeholder="Qty"
                         className="block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                        required
                       />
                     </div>
                     <div className="w-full sm:w-32">
+                      Price
                       <input
+                        label="Price"
                         type="number"
                         name="price"
                         min="0"
@@ -262,10 +282,11 @@ const InvoiceForm = () => {
                         onChange={(e) => handleItemChange(index, e)}
                         placeholder="Price"
                         className="block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                        required
                       />
                     </div>
                     <div className="w-full sm:w-24 text-right font-medium text-gray-700">
-                      ${(item.quantity * item.price).toFixed(2)}
+                      ₹{(item.quantity * item.price).toFixed(2)}
                     </div>
                     <button
                       type="button"
@@ -274,8 +295,18 @@ const InvoiceForm = () => {
                       className="p-2 text-red-500 shrink-0 hover:bg-red-50 rounded-md disabled:opacity-50"
                       title="Remove Item"
                     >
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                      <svg
+                        className="w-5 h-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                        />
                       </svg>
                     </button>
                   </div>
@@ -286,7 +317,9 @@ const InvoiceForm = () => {
             {/* Calculations & Notes */}
             <div className="pt-6 border-t border-gray-200 grid grid-cols-1 md:grid-cols-2 gap-8">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Notes</label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Notes
+                </label>
                 <textarea
                   name="notes"
                   value={formData.notes}
@@ -300,7 +333,7 @@ const InvoiceForm = () => {
               <div className="bg-gray-50 p-6 rounded-lg border border-gray-200">
                 <div className="flex justify-between py-2 border-b border-gray-200">
                   <span className="text-gray-600">Subtotal:</span>
-                  <span className="font-medium">${subtotal.toFixed(2)}</span>
+                  <span className="font-medium">₹{subtotal.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between items-center py-2 border-b border-gray-200">
                   <span className="text-gray-600">Tax Rate (%):</span>
@@ -316,11 +349,11 @@ const InvoiceForm = () => {
                 </div>
                 <div className="flex justify-between py-2 border-b border-gray-200">
                   <span className="text-gray-600">Tax Amount:</span>
-                  <span className="font-medium">${tax.toFixed(2)}</span>
+                  <span className="font-medium">₹{tax.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between py-4 text-lg font-bold text-gray-900">
                   <span>Total:</span>
-                  <span>${total.toFixed(2)}</span>
+                  <span>₹{total.toFixed(2)}</span>
                 </div>
               </div>
             </div>
@@ -332,7 +365,7 @@ const InvoiceForm = () => {
                 disabled={loading}
                 className="w-full sm:w-auto flex justify-center py-3 px-6 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50"
               >
-                {loading ? 'Saving...' : id ? 'Update Invoice' : 'Save Invoice'}
+                {loading ? "Saving..." : id ? "Update Invoice" : "Save Invoice"}
               </button>
             </div>
           </form>

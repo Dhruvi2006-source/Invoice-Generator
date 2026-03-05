@@ -56,8 +56,8 @@ const InvoiceDetails = () => {
       <div className="max-w-4xl mx-auto">
         {/* Actions - hidden when printing */}
         <div className="mb-6 flex justify-between items-center print:hidden">
-          <button 
-            onClick={() => navigate('/')}
+          <button
+            onClick={() => navigate("/")}
             className="flex items-center text-blue-600 hover:text-blue-800 font-medium"
           >
             &larr; Back to Dashboard
@@ -72,15 +72,18 @@ const InvoiceDetails = () => {
 
         {/* Invoice Paper */}
         <div className="bg-white shadow-lg rounded-lg overflow-hidden p-8 sm:p-12 print:shadow-none print:p-0">
-          
           {/* Header */}
           <div className="flex justify-between items-start border-b border-gray-200 pb-8">
             <div>
-              <h1 className="text-4xl font-extrabold text-gray-900 tracking-tight">INVOICE</h1>
+              <h1 className="text-4xl font-extrabold text-gray-900 tracking-tight">
+                INVOICE
+              </h1>
               <p className="mt-2 text-gray-500">#{invoice.invoiceNumber}</p>
             </div>
             <div className="text-right">
-              <h2 className="text-xl font-bold text-gray-800">{invoice.companyName}</h2>
+              <h2 className="text-xl font-bold text-gray-800">
+                {invoice.companyName}
+              </h2>
               <p className="mt-1 text-sm text-gray-500">
                 Date: {new Date(invoice.date).toLocaleDateString()}
               </p>
@@ -89,8 +92,12 @@ const InvoiceDetails = () => {
 
           {/* Bill To */}
           <div className="mt-8">
-            <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-2">Billed To</h3>
-            <div className="text-gray-900 font-semibold">{invoice.clientName}</div>
+            <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-2">
+              Billed To
+            </h3>
+            <div className="text-gray-900 font-semibold">
+              {invoice.clientName}
+            </div>
             {invoice.clientEmail && (
               <div className="text-gray-600 mt-1">{invoice.clientEmail}</div>
             )}
@@ -101,19 +108,45 @@ const InvoiceDetails = () => {
             <table className="min-w-full divide-y divide-gray-200">
               <thead>
                 <tr>
-                  <th scope="col" className="py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Item</th>
-                  <th scope="col" className="py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Qty</th>
-                  <th scope="col" className="py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Price</th>
-                  <th scope="col" className="py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Amount</th>
+                  <th
+                    scope="col"
+                    className="py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    Item
+                  </th>
+                  <th
+                    scope="col"
+                    className="py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    Qty
+                  </th>
+                  <th
+                    scope="col"
+                    className="py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    Price
+                  </th>
+                  <th
+                    scope="col"
+                    className="py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    Amount
+                  </th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
                 {invoice.items.map((item, index) => (
                   <tr key={index}>
                     <td className="py-4 text-sm text-gray-900">{item.name}</td>
-                    <td className="py-4 text-sm text-gray-900 text-right">{item.quantity}</td>
-                    <td className="py-4 text-sm text-gray-900 text-right">${item.price.toFixed(2)}</td>
-                    <td className="py-4 text-sm text-gray-900 text-right font-medium">${(item.quantity * item.price).toFixed(2)}</td>
+                    <td className="py-4 text-sm text-gray-900 text-right">
+                      {item.quantity}
+                    </td>
+                    <td className="py-4 text-sm text-gray-900 text-right">
+                      ₹{item.price.toFixed(2)}
+                    </td>
+                    <td className="py-4 text-sm text-gray-900 text-right font-medium">
+                      ₹{(item.quantity * item.price).toFixed(2)}
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -125,15 +158,15 @@ const InvoiceDetails = () => {
             <div className="w-full max-w-sm space-y-3">
               <div className="flex justify-between text-sm text-gray-600">
                 <span>Subtotal</span>
-                <span>${invoice.subtotal.toFixed(2)}</span>
+                <span>₹{invoice.subtotal.toFixed(2)}</span>
               </div>
               <div className="flex justify-between text-sm text-gray-600">
                 <span>Tax</span>
-                <span>${invoice.tax.toFixed(2)}</span>
+                <span>₹{invoice.tax.toFixed(2)}</span>
               </div>
               <div className="flex justify-between text-lg font-bold text-gray-900 pt-3 border-t border-gray-200">
                 <span>Total</span>
-                <span>${invoice.total.toFixed(2)}</span>
+                <span>₹{invoice.total.toFixed(2)}</span>
               </div>
             </div>
           </div>
@@ -141,11 +174,14 @@ const InvoiceDetails = () => {
           {/* Notes */}
           {invoice.notes && (
             <div className="mt-16 pt-8 border-t border-gray-200">
-              <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-2">Notes</h3>
-              <p className="text-gray-600 whitespace-pre-wrap">{invoice.notes}</p>
+              <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-2">
+                Notes
+              </h3>
+              <p className="text-gray-600 whitespace-pre-wrap">
+                {invoice.notes}
+              </p>
             </div>
           )}
-
         </div>
       </div>
     </div>
