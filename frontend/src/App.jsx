@@ -4,6 +4,8 @@ import ProtectedRoute from './components/ProtectedRoute';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
+import InvoiceForm from './pages/InvoiceForm';
+import InvoiceDetails from './pages/InvoiceDetails';
 
 function App() {
   return (
@@ -17,6 +19,22 @@ function App() {
             element={
               <ProtectedRoute>
                 <Dashboard />
+              </ProtectedRoute>
+            } 
+          />
+          <Route 
+            path="/invoices/create" 
+            element={
+              <ProtectedRoute>
+                <InvoiceForm />
+              </ProtectedRoute>
+            } 
+          />
+          <Route 
+            path="/invoices/:id" 
+            element={
+              <ProtectedRoute>
+                <InvoiceDetails />
               </ProtectedRoute>
             } 
           />
