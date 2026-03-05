@@ -31,6 +31,14 @@ function App() {
             } 
           />
           <Route 
+            path="/invoices/edit/:id" 
+            element={
+              <ProtectedRoute>
+                <InvoiceForm />
+              </ProtectedRoute>
+            } 
+          />
+          <Route 
             path="/invoices/:id" 
             element={
               <ProtectedRoute>

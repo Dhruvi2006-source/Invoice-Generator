@@ -1,9 +1,10 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import api from '../api/axios';
 
 const InvoiceForm = () => {
   const navigate = useNavigate();
+  const { id } = useParams();
 
   const [formData, setFormData] = useState({
     companyName: '',
@@ -21,6 +22,35 @@ const InvoiceForm = () => {
 
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [fetching, setFetching] = useState(!!id);
+
+  useEffect(() => {
+    if (id) {
+      const fetchInvoice = async () => {
+        try {
+          const { data } = await api.get(`/invoices/${id}`);
+          
+          setFormData({
+            companyName: data.companyName,
+            clientName: data.clientName,
+            clientEmail: data.clientEmail || '',
+            invoiceNumber: data.invoiceNumber,
+            date: data.date ? data.date.split('T')[0] : new Date().toISOString().split('T')[0],
+            notes: data.notes || '',
+            taxRate: data.subtotal > 0 ? (data.tax / data.subtotal) * 100 : 0,
+          });
+          setItems(data.items);
+        } catch (err) {
+          console.error('Error fetching invoice for edit:', err);
+          setError('Failed to load invoice details for editing.');
+        } finally {
+          setFetching(false);
+        }
+      };
+      
+      fetchInvoice();
+    }
+  }, [id]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -76,7 +106,11 @@ const InvoiceForm = () => {
         notes: formData.notes
       };
 
-      await api.post('/invoices', invoiceData);
+      if (id) {
+        await api.put(`/invoices/${id}`, invoiceData);
+      } else {
+        await api.post('/invoices', invoiceData);
+      }
       navigate('/');
     } catch (err) {
       console.error('Error creating invoice:', err);
@@ -86,12 +120,20 @@ const InvoiceForm = () => {
     }
   };
 
+  if (fetching) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex justify-center items-center">
+        <div className="text-gray-500 text-xl font-medium">Loading Invoice Data...</div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto bg-white rounded-xl shadow-md overflow-hidden">
         <div className="px-6 py-8">
           <div className="flex justify-between items-center mb-8">
-            <h2 className="text-3xl font-extrabold text-gray-900">Create New Invoice</h2>
+            <h2 className="text-3xl font-extrabold text-gray-900">{id ? 'Edit Invoice' : 'Create New Invoice'}</h2>
             <button 
               onClick={() => navigate('/')}
               className="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none"
@@ -290,7 +332,7 @@ const InvoiceForm = () => {
                 disabled={loading}
                 className="w-full sm:w-auto flex justify-center py-3 px-6 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50"
               >
-                {loading ? 'Saving...' : 'Save Invoice'}
+                {loading ? 'Saving...' : id ? 'Update Invoice' : 'Save Invoice'}
               </button>
             </div>
           </form>

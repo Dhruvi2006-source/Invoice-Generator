@@ -139,6 +139,12 @@ const Dashboard = () => {
                           >
                             View
                           </Link>
+                          <Link 
+                            to={`/invoices/edit/${invoice._id}`}
+                            className="text-blue-600 hover:text-blue-900 transition-colors"
+                          >
+                            Edit
+                          </Link>
                           <button 
                             onClick={() => handleDelete(invoice._id)}
                             className="text-red-600 hover:text-red-900 transition-colors"

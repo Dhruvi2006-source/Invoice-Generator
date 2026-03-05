@@ -100,9 +100,58 @@ const deleteInvoice = async (req, res) => {
   }
 };
 
+// @desc    Update an invoice
+// @route   PUT /api/invoices/:id
+// @access  Private
+const updateInvoice = async (req, res) => {
+  try {
+    const invoice = await Invoice.findById(req.params.id);
+
+    if (!invoice) {
+      return res.status(404).json({ message: 'Invoice not found' });
+    }
+
+    // Check if the user trying to update the invoice is the owner
+    if (invoice.userId.toString() !== req.user.id) {
+      return res.status(401).json({ message: 'Not authorized to update this invoice' });
+    }
+
+    const {
+      invoiceNumber,
+      companyName,
+      clientName,
+      clientEmail,
+      date,
+      items,
+      subtotal,
+      tax,
+      total,
+      notes,
+    } = req.body;
+
+    invoice.invoiceNumber = invoiceNumber || invoice.invoiceNumber;
+    invoice.companyName = companyName || invoice.companyName;
+    invoice.clientName = clientName || invoice.clientName;
+    invoice.clientEmail = clientEmail || invoice.clientEmail;
+    invoice.date = date || invoice.date;
+    invoice.items = items || invoice.items;
+    invoice.subtotal = subtotal || invoice.subtotal;
+    invoice.tax = tax || invoice.tax;
+    invoice.total = total || invoice.total;
+    invoice.notes = notes || invoice.notes;
+
+    const updatedInvoice = await invoice.save();
+    res.json(updatedInvoice);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error while updating invoice' });
+  }
+};
+
 module.exports = {
   createInvoice,
   getInvoices,
   getInvoiceById,
+  updateInvoice,
   deleteInvoice,
 };
