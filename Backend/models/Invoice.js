@@ -58,6 +58,14 @@ const invoiceSchema = new mongoose.Schema(
     notes: {
       type: String,
     },
+    logoUrl: {
+      type: String,
+      default: '',
+    },
+    signatureUrl: {
+      type: String,
+      default: '',
+    },
   },
   {
     timestamps: true,

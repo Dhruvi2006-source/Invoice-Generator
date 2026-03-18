@@ -49,6 +49,18 @@ const InvoiceForm = () => {
       };
       
       fetchInvoice();
+    } else {
+      const fetchSettings = async () => {
+        try {
+          const { data } = await api.get('/users/settings');
+          if (data && data.defaultGstRate) {
+            setFormData(prev => ({ ...prev, taxRate: data.defaultGstRate }));
+          }
+        } catch (err) {
+          console.error('Error fetching settings for new invoice:', err);
+        }
+      };
+      fetchSettings();
     }
   }, [id]);
 

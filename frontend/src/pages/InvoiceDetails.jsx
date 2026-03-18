@@ -80,7 +80,10 @@ const InvoiceDetails = () => {
               </h1>
               <p className="mt-2 text-gray-500">#{invoice.invoiceNumber}</p>
             </div>
-            <div className="text-right">
+            <div className="text-right flex flex-col items-end">
+              {invoice.logoUrl && (
+                <img src={invoice.logoUrl} alt="Company Logo" className="h-16 object-contain mb-4" />
+              )}
               <h2 className="text-xl font-bold text-gray-800">
                 {invoice.companyName}
               </h2>
@@ -153,8 +156,18 @@ const InvoiceDetails = () => {
             </table>
           </div>
 
-          {/* Summary */}
-          <div className="mt-8 flex justify-end">
+          {/* Summary & Signature */}
+          <div className="mt-8 flex flex-col sm:flex-row justify-between items-end">
+            <div className="mb-6 sm:mb-0">
+              {invoice.signatureUrl ? (
+                <div className="text-center">
+                  <img src={invoice.signatureUrl} alt="Signature" className="h-20 object-contain mb-2 border-b border-gray-300 pb-2" />
+                  <p className="text-sm font-medium text-gray-600">Authorized Signature</p>
+                </div>
+              ) : (
+                <div className="w-48 border-b-2 border-gray-300 mb-2 h-16"></div>
+              )}
+            </div>
             <div className="w-full max-w-sm space-y-3">
               <div className="flex justify-between text-sm text-gray-600">
                 <span>Subtotal</span>

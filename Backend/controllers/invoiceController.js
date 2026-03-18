@@ -18,6 +18,9 @@ const createInvoice = async (req, res) => {
       notes,
     } = req.body;
 
+    const User = require('../models/User');
+    const user = await User.findById(req.user.id);
+
     const invoice = new Invoice({
       userId: req.user.id,
       invoiceNumber,
@@ -30,6 +33,8 @@ const createInvoice = async (req, res) => {
       tax,
       total,
       notes,
+      logoUrl: user?.logoUrl || '',
+      signatureUrl: user?.signatureUrl || '',
     });
 
     const createdInvoice = await invoice.save();
@@ -139,6 +144,11 @@ const updateInvoice = async (req, res) => {
     invoice.tax = tax || invoice.tax;
     invoice.total = total || invoice.total;
     invoice.notes = notes || invoice.notes;
+
+    const User = require('../models/User');
+    const user = await User.findById(req.user.id);
+    invoice.logoUrl = user?.logoUrl || invoice.logoUrl;
+    invoice.signatureUrl = user?.signatureUrl || invoice.signatureUrl;
 
     const updatedInvoice = await invoice.save();
     res.json(updatedInvoice);

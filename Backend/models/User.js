@@ -20,7 +20,19 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: [true, 'Please add a password'],
       minlength: 6,
-      select: false, // Do not return password by default
+      select: false,
+    },
+    logoUrl: {
+      type: String,
+      default: '',
+    },
+    signatureUrl: {
+      type: String,
+      default: '',
+    },
+    defaultGstRate: {
+      type: Number,
+      default: 0,
     },
   },
   {
