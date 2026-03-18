@@ -6,6 +6,7 @@ import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import InvoiceForm from './pages/InvoiceForm';
 import InvoiceDetails from './pages/InvoiceDetails';
+import Home from './pages/Home';
 
 function App() {
   return (
@@ -17,11 +18,14 @@ function App() {
           <Route 
             path="/" 
             element={
-              <ProtectedRoute>
-                <Dashboard />
-              </ProtectedRoute>
+              <Home />
             } 
           />
+          <Route path='/dashboard' element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          } />
           <Route 
             path="/invoices/create" 
             element={

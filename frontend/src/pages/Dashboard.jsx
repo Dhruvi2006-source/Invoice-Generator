@@ -1,13 +1,17 @@
 import { useState, useEffect, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link , Navigate} from 'react-router-dom';
 import AuthContext from '../context/AuthContext';
 import api from '../api/axios';
 
 const Dashboard = () => {
-  const { logout } = useContext(AuthContext);
+  const { logout , token } = useContext(AuthContext);
   const [invoices, setInvoices] = useState([]);
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(true);
+
+  if(!token){
+    return <Navigate to="/" replace />;
+  }
 
   const fetchInvoices = async () => {
     try {

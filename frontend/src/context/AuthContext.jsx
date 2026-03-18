@@ -19,7 +19,7 @@ export const AuthProvider = ({ children }) => {
           setUser({ mockUser: true }); 
         } catch (error) {
           console.error("Error verifying token", error);
-          logout();
+          // logout();
         }
       }
       setLoading(false);
