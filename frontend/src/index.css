@@ -1,1 +1,27 @@
 @import "tailwindcss";
+
+/* NProgress Theme Overrides */
+#nprogress .bar {
+  background: #16a34a !important; /* green-600 */
+  height: 4px !important;
+}
+
+#nprogress .peg {
+  box-shadow: 0 0 10px #16a34a, 0 0 5px #16a34a !important;
+}
+
+/* Global Smooth Animations */
+@keyframes fadeInSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInSlideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
