@@ -39,7 +39,7 @@ const InvoiceDetails = () => {
         <div className="text-red-500 text-xl font-medium mb-4">{error || 'Invoice not found'}</div>
         <button 
           onClick={() => navigate('/')}
-          className="px-4 py-2 border border-transparent rounded-md text-sm font-medium text-white bg-blue-600 hover:bg-blue-700"
+          className="px-4 py-2 border border-transparent rounded-md text-sm font-medium text-white bg-green-600 hover:bg-green-700"
         >
           Back to Dashboard
         </button>
@@ -58,13 +58,13 @@ const InvoiceDetails = () => {
         <div className="mb-6 flex justify-between items-center print:hidden">
           <button
             onClick={() => navigate("/")}
-            className="flex items-center text-blue-600 hover:text-blue-800 font-medium"
+            className="flex items-center text-green-600 hover:text-green-800 font-medium"
           >
             &larr; Back to Dashboard
           </button>
           <button
             onClick={handlePrint}
-            className="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700"
+            className="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700"
           >
             Print Invoice
           </button>

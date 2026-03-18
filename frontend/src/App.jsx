@@ -7,6 +7,7 @@ import Dashboard from './pages/Dashboard';
 import InvoiceForm from './pages/InvoiceForm';
 import InvoiceDetails from './pages/InvoiceDetails';
 import Home from './pages/Home';
+import Pricing from './pages/Pricing';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
               <Home />
             } 
           />
+          <Route path="/pricing" element={<Pricing />} />
           <Route path='/dashboard' element={
             <ProtectedRoute>
               <Dashboard />

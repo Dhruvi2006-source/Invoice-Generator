@@ -162,7 +162,7 @@ const InvoiceForm = () => {
                   name="companyName"
                   value={formData.companyName}
                   onChange={handleChange}
-                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
                   placeholder="e.g. Acme Corp"
                   required
                 />
@@ -176,7 +176,7 @@ const InvoiceForm = () => {
                   name="clientName"
                   value={formData.clientName}
                   onChange={handleChange}
-                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
                   placeholder="e.g. John Doe"
                   required
                 />
@@ -190,7 +190,7 @@ const InvoiceForm = () => {
                   name="clientEmail"
                   value={formData.clientEmail}
                   onChange={handleChange}
-                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
                   placeholder="john@example.com"
                 />
               </div>
@@ -207,7 +207,7 @@ const InvoiceForm = () => {
                   name="invoiceNumber"
                   value={formData.invoiceNumber}
                   onChange={handleChange}
-                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
                   placeholder="INV-001"
                   required
                 />
@@ -221,7 +221,7 @@ const InvoiceForm = () => {
                   name="date"
                   value={formData.date}
                   onChange={handleChange}
-                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
                 />
               </div>
             </div>
@@ -233,7 +233,7 @@ const InvoiceForm = () => {
                 <button
                   type="button"
                   onClick={addItem}
-                  className="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded text-blue-700 bg-blue-100 hover:bg-blue-200 focus:outline-none"
+                  className="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded text-green-700 bg-green-100 hover:bg-green-200 focus:outline-none"
                 >
                   + Add Item
                 </button>
@@ -253,7 +253,7 @@ const InvoiceForm = () => {
                         value={item.name}
                         onChange={(e) => handleItemChange(index, e)}
                         placeholder="Item Name"
-                        className="block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                        className="block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
                         required
                       />
                     </div>
@@ -266,7 +266,7 @@ const InvoiceForm = () => {
                         value={item.quantity}
                         onChange={(e) => handleItemChange(index, e)}
                         placeholder="Qty"
-                        className="block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                        className="block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
                         required
                       />
                     </div>
@@ -281,7 +281,7 @@ const InvoiceForm = () => {
                         value={item.price}
                         onChange={(e) => handleItemChange(index, e)}
                         placeholder="Price"
-                        className="block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                        className="block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
                         required
                       />
                     </div>
@@ -325,7 +325,7 @@ const InvoiceForm = () => {
                   value={formData.notes}
                   onChange={handleChange}
                   rows="4"
-                  className="block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  className="block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
                   placeholder="Payment terms, bank details, or a simple thank you."
                 />
               </div>
@@ -344,7 +344,7 @@ const InvoiceForm = () => {
                     max="100"
                     value={formData.taxRate}
                     onChange={handleChange}
-                    className="w-20 border border-gray-300 rounded-md shadow-sm py-1 px-2 text-right focus:outline-none focus:border-blue-500 sm:text-sm"
+                    className="w-20 border border-gray-300 rounded-md shadow-sm py-1 px-2 text-right focus:outline-none focus:border-green-500 sm:text-sm"
                   />
                 </div>
                 <div className="flex justify-between py-2 border-b border-gray-200">
@@ -363,7 +363,7 @@ const InvoiceForm = () => {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full sm:w-auto flex justify-center py-3 px-6 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50"
+                className="w-full sm:w-auto flex justify-center py-3 px-6 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 disabled:opacity-50"
               >
                 {loading ? "Saving..." : id ? "Update Invoice" : "Save Invoice"}
               </button>

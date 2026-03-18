@@ -95,7 +95,7 @@ function Home() {
         <div className="container mx-auto px-6 flex flex-col lg:flex-row items-center gap-16">
           <div className="lg:w-1/3 space-y-6">
             <h2 className="text-4xl md:text-5xl font-extrabold leading-tight">
-              See why our Users love Fynlo
+              See why our Users love Paymint
             </h2>
             <button className="bg-green-500 text-white px-6 py-3 rounded-full font-bold hover:bg-green-400 transition shadow-lg mt-4 inline-block">
               Start 14-day free trial

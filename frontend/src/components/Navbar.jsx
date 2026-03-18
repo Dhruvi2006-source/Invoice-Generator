@@ -31,10 +31,10 @@ function Navbar() {
           Pricing
         </Link>
         <Link
-          to="/login"
+          to="/dashboard"
           className="text-gray-600 hover:text-green-600 font-medium cursor-pointer"
         >
-          Login
+          Dashboard
         </Link>
       </div>
 
