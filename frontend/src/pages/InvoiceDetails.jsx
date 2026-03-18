@@ -57,7 +57,7 @@ const InvoiceDetails = () => {
         {/* Actions - hidden when printing */}
         <div className="mb-6 flex justify-between items-center print:hidden">
           <button
-            onClick={() => navigate("/")}
+            onClick={() => navigate("/dashboard")}
             className="flex items-center text-green-600 hover:text-green-800 font-medium"
           >
             &larr; Back to Dashboard

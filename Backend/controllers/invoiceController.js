@@ -6,7 +6,6 @@ const Invoice = require('../models/Invoice');
 const createInvoice = async (req, res) => {
   try {
     const {
-      invoiceNumber,
       companyName,
       clientName,
       clientEmail,
@@ -21,9 +20,32 @@ const createInvoice = async (req, res) => {
     const User = require('../models/User');
     const user = await User.findById(req.user.id);
 
+    // Auto-generate invoice number sequentially
+    let generatedInvoiceNumber = req.body.invoiceNumber;
+    if (!generatedInvoiceNumber) {
+      const lastInvoice = await Invoice.findOne({ userId: req.user.id }).sort({ createdAt: -1 });
+      if (lastInvoice && lastInvoice.invoiceNumber) {
+        // Try to parse invoice number format like 'INV-001'
+        const match = lastInvoice.invoiceNumber.match(/^(.*?)(\d+)$/);
+        if (match) {
+          const prefix = match[1];
+          const numberStr = match[2];
+          const nextNumber = parseInt(numberStr, 10) + 1;
+          const paddedNumber = nextNumber.toString().padStart(numberStr.length, '0');
+          generatedInvoiceNumber = `${prefix}${paddedNumber}`;
+        } else {
+          // Fallback if parsing fails to guess the number
+          const count = await Invoice.countDocuments({ userId: req.user.id });
+          generatedInvoiceNumber = `INV-${String(count + 1).padStart(3, '0')}`;
+        }
+      } else {
+        generatedInvoiceNumber = 'INV-001';
+      }
+    }
+
     const invoice = new Invoice({
       userId: req.user.id,
-      invoiceNumber,
+      invoiceNumber: generatedInvoiceNumber,
       companyName,
       clientName,
       clientEmail,

@@ -53,8 +53,8 @@ const InvoiceForm = () => {
       const fetchSettings = async () => {
         try {
           const { data } = await api.get('/users/settings');
-          if (data && data.defaultGstRate) {
-            setFormData(prev => ({ ...prev, taxRate: data.defaultGstRate }));
+          if (data && data.defaultGstRate !== undefined) {
+            setFormData(prev => ({ ...prev, taxRate: Number(data.defaultGstRate) }));
           }
         } catch (err) {
           console.error('Error fetching settings for new invoice:', err);
@@ -92,8 +92,8 @@ const InvoiceForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.companyName || !formData.clientName || !formData.invoiceNumber) {
-      setError('Please fill in all required fields (Company, Client, Invoice Number).');
+    if (!formData.companyName || !formData.clientName || (id && !formData.invoiceNumber)) {
+      setError('Please fill in all required fields (Company, Client' + (id ? ', Invoice Number' : '') + ').');
       return;
     }
     if (items.some((item) => !item.name)) {
@@ -123,7 +123,7 @@ const InvoiceForm = () => {
       } else {
         await api.post('/invoices', invoiceData);
       }
-      navigate('/');
+      navigate('/dashboard');
     } catch (err) {
       console.error('Error creating invoice:', err);
       setError(err.response?.data?.message || 'Failed to create invoice.');
@@ -212,16 +212,17 @@ const InvoiceForm = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6 border-t border-gray-200">
               <div>
                 <label className="block text-sm font-medium text-gray-700">
-                  Invoice Number *
+                  Invoice Number {id ? '*' : ''}
                 </label>
                 <input
                   type="text"
                   name="invoiceNumber"
-                  value={formData.invoiceNumber}
+                  value={id ? formData.invoiceNumber : 'Auto-Generated'}
                   onChange={handleChange}
-                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
+                  disabled={!id}
+                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm disabled:bg-gray-100 disabled:text-gray-500"
                   placeholder="INV-001"
-                  required
+                  required={!!id}
                 />
               </div>
               <div>
